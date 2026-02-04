@@ -4,50 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DITTO ADIANSYAH - CV</title>
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: "Segoe UI", system-ui, sans-serif;
         background: #060b1f;
         color: #e6ebf5;
         line-height: 1.6;
       }
-
       .container {
         max-width: 1100px;
         margin: 50px auto;
         padding: 0 20px;
       }
-
       .cv-card {
         background: #0c122b;
         border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
       }
-
       .section-card {
         opacity: 0;
         transform: translateY(30px);
         transition: all 0.6s ease;
       }
-
       .section-card.show {
         opacity: 1;
         transform: translateY(0);
       }
-
       .progress {
         width: 0;
         transition: width 1.4s ease;
@@ -59,15 +51,12 @@
         padding: 45px;
         border-bottom: 5px solid #1ea7ff;
       }
-
       .header-inner {
         display: flex;
         align-items: center;
         gap: 35px;
         flex-wrap: wrap;
       }
-
-      /* ===== FOTO JADI BOX ===== */
       .photo-box {
         width: 150px;
         height: 150px;
@@ -79,39 +68,32 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         cursor: pointer;
       }
-
       .photo-box:hover {
         transform: scale(1.08);
         box-shadow:
           0 18px 45px rgba(30, 167, 255, 0.45),
           0 0 0 3px rgba(30, 167, 255, 0.45);
       }
-
       .photo-box img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
         object-fit: cover;
-        display: block;
       }
-
       .header-text {
         flex: 1;
       }
-
       .name {
         font-size: 2.6rem;
         font-weight: 700;
         color: #ffffff;
         letter-spacing: 1.4px;
       }
-
       .title {
         font-size: 1.3rem;
         color: #1ea7ff;
         margin: 8px 0 18px;
       }
-
       .contact-bar {
         display: flex;
         flex-wrap: wrap;
@@ -119,12 +101,10 @@
         font-size: 0.95rem;
         color: #cfd8e3;
       }
-
       .contact-bar a {
         color: #8fd4ff;
         text-decoration: none;
       }
-
       .contact-bar a:hover {
         color: #1ea7ff;
       }
@@ -136,30 +116,26 @@
         gap: 45px;
         padding: 55px 45px;
       }
-
       @media (max-width: 900px) {
         .content {
           grid-template-columns: 1fr;
         }
       }
 
-      /* ================= SECTION CARD ================= */
       .section-card {
         background: #0f1738;
         border-radius: 14px;
         padding: 30px;
-        margin-bottom: 38px; /* ± 1 cm */
+        margin-bottom: 38px;
         border: 1px solid rgba(30, 167, 255, 0.18);
         transition: all 0.35s ease;
       }
-
       .section-card:hover {
         transform: scale(1.04);
         box-shadow:
           0 16px 45px rgba(30, 167, 255, 0.25),
           0 0 0 2px rgba(30, 167, 255, 0.35);
       }
-
       h2.section-title {
         color: #1ea7ff;
         font-size: 1.5rem;
@@ -167,7 +143,6 @@
         padding-bottom: 10px;
         position: relative;
       }
-
       h2.section-title::after {
         content: "";
         position: absolute;
@@ -183,44 +158,85 @@
       .skill-item {
         margin-bottom: 18px;
       }
-
       .skill-name {
         display: flex;
         justify-content: space-between;
         margin-bottom: 6px;
         font-size: 0.95rem;
       }
-
       .progress-bar {
         height: 10px;
         background: #1a234f;
         border-radius: 5px;
         overflow: hidden;
       }
-
       .progress {
         height: 100%;
         background: linear-gradient(90deg, #4fc3ff, #1ea7ff);
         border-radius: 5px;
       }
 
-      /* ================= EXPERIENCE & EDUCATION ================= */
-      .year {
+      /* Skills Slider */
+      .skills-slider {
+        position: relative;
+        overflow: hidden;
+      }
+      .skills-wrapper {
+        position: relative;
+        min-height: 220px;
+      }
+      .skills-page {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(30px);
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+      .skills-page.active {
+        position: relative;
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      /* Arrow Navigation */
+      .skills-nav {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .skills-nav-top {
+        font-size: 0.85rem;
         color: #8fd4ff;
-        font-weight: 600;
-        margin-bottom: 6px;
+        opacity: 0.9;
       }
-
-      .position {
-        font-size: 1.15rem;
-        color: #ffffff;
+      .arrows-container {
+        display: flex;
+        align-items: center;
+        gap: 40px;
       }
-
-      .company {
-        font-style: italic;
-        color: #aab6cc;
-        margin-bottom: 10px;
-        display: block;
+      .arrow {
+        font-size: 1.4rem;
+        color: #8fd4ff;
+        opacity: 0.6;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        padding: 6px 10px;
+        border-radius: 8px;
+      }
+      .arrow:hover,
+      .arrow:active {
+        opacity: 1;
+        background: rgba(30, 167, 255, 0.15);
+        transform: scale(1.15);
+      }
+      .arrow.disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+        transform: none;
       }
 
       /* ================= INTERESTS ================= */
@@ -231,12 +247,10 @@
         font-size: 2.4rem;
         color: #3a4b7a;
       }
-
       .interest-icons i.active {
         color: #1ea7ff;
       }
 
-      /* style tulisan bergerak */
       /* ===== TEXT REVEAL ANIMATION ===== */
       .reveal-text {
         opacity: 0;
@@ -245,13 +259,10 @@
           opacity 0.8s ease,
           transform 0.8s ease;
       }
-
       .reveal-text.show-text {
         opacity: 1;
         transform: translateY(0);
       }
-
-      /* delay bertahap */
       .reveal-text.delay-1 {
         transition-delay: 0.1s;
       }
@@ -265,152 +276,166 @@
         transition-delay: 0.55s;
       }
 
-      /* ICON INTEREST */
       .interest-icons i {
         opacity: 0;
         transform: scale(0.6);
         transition: all 0.6s ease;
       }
-
       .interest-icons i.show-icon {
         opacity: 1;
         transform: scale(1);
       }
 
-      /* ================= CERTIFICATIONS 1================= */
-      .certifications {
-        margin-top: 30px;
-      }
-
-      .certifications h2 {
-        font-size: 20px;
-        margin-bottom: 15px;
-        color: #222;
-      }
-
-      .certifications h2 i {
-        margin-right: 8px;
-        color: #444;
-      }
-
+      /* ================= CERTIFICATIONS ================= */
       .cert-list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-
       .cert-list li {
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 8px 0;
-        border-bottom: 1px dashed #ddd;
-      }
-
-      .cert-list li i {
-        font-size: 16px;
-        color: #555;
-        min-width: 20px;
-      }
-
-      .cert-list strong {
-        flex: 1;
-        font-weight: 600;
-      }
-
-      .cert-list .date {
-        font-size: 13px;
-        color: #777;
-      }
-
-      /* ================= CERTIFICATIONS 2================= */
-      .cert-list li {
+        border-bottom: 1px dashed #444;
         opacity: 0;
         transform: translateY(10px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
-
       .cert-list li.show-text {
         opacity: 1;
         transform: translateY(0);
       }
-
-      /* delay bertahap otomatis */
-      .cert-list li:nth-child(1) { transition-delay: 0.1s; }
-      .cert-list li:nth-child(2) { transition-delay: 0.2s; }
-      .cert-list li:nth-child(3) { transition-delay: 0.3s; }
-      .cert-list li:nth-child(4) { transition-delay: 0.4s; }
-      .cert-list li:nth-child(5) { transition-delay: 0.5s; }
-      .cert-list li:nth-child(6) { transition-delay: 0.6s; }
-      .cert-list li:nth-child(7) { transition-delay: 0.7s; }
-      .cert-list li:nth-child(8) { transition-delay: 0.8s; }
-      .cert-list li:nth-child(9) { transition-delay: 0.9s; }
-
-
-      /* ===== SKILLS SLIDER ===== */
-      .skills-slider {
-        overflow: hidden;
+      .cert-list li:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .cert-list li:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .cert-list li:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .cert-list li:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+      .cert-list li:nth-child(5) {
+        transition-delay: 0.5s;
+      }
+      .cert-list li:nth-child(6) {
+        transition-delay: 0.6s;
+      }
+      .cert-list li:nth-child(7) {
+        transition-delay: 0.7s;
+      }
+      .cert-list li:nth-child(8) {
+        transition-delay: 0.8s;
+      }
+      .cert-list li:nth-child(9) {
+        transition-delay: 0.9s;
+      }
+      .cert-list li:nth-child(10) {
+        transition-delay: 1s;
       }
 
-      /* ===== FIX SIZE SKILLS CARD ===== */
-      .skills-slider {
-        position: relative;
-        overflow: hidden;
+      .cert-list li i {
+        font-size: 1.1rem;
+        min-width: 24px;
       }
-
-      .skills-wrapper {
-        position: relative;
+      .cert-list strong {
+        flex: 1;
       }
-
-      .skills-page {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transform: translateX(30px);
-        pointer-events: none;
-        transition: all 0.5s ease;
-      }
-
-      .skills-page.active {
-        position: relative;
-        opacity: 1;
-        transform: translateX(0);
-        pointer-events: auto;
-      }
-
-
-      .skills-nav {
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .skills-nav button {
-        background: #1ea7ff;
-        border: none;
-        color: #fff;
-        padding: 8px 14px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .skills-nav button:hover {
-        background: #4fc3ff;
-      }
-
-      #skillPageIndicator {
-        font-size: 0.9rem;
+      .cert-list .date {
+        font-size: 0.85rem;
         color: #8fd4ff;
       }
 
-      
-  
+      /* ================= EXPERIENCE & EDUCATION ================= */
+      .year {
+        color: #8fd4ff;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .position {
+        font-size: 1.15rem;
+        color: #ffffff;
+      }
+      .company {
+        font-style: italic;
+        color: #aab6cc;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 900px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .header-text {
+          flex: unset;
+        }
+        .name {
+          font-size: 2rem;
+        }
+        .title {
+          font-size: 1.1rem;
+        }
+        .contact-bar {
+          justify-content: center;
+          gap: 15px;
+          font-size: 0.85rem;
+        }
+        .content {
+          grid-template-columns: 1fr;
+          padding: 30px 20px;
+          gap: 30px;
+        }
+        .skill-name {
+          font-size: 0.9rem;
+        }
+        .progress-bar {
+          height: 8px;
+        }
+        .interest-icons {
+          gap: 18px;
+          font-size: 2rem;
+          justify-content: center;
+        }
+        .section-card {
+          padding: 20px;
+        }
+        .section-title {
+          font-size: 1.3rem;
+        }
+      }
+      @media (max-width: 500px) {
+        .photo-box {
+          width: 120px;
+          height: 120px;
+        }
+        .name {
+          font-size: 1.6rem;
+        }
+        .title {
+          font-size: 1rem;
+        }
+        .arrows-container {
+          gap: 30px;
+        }
+        .arrow {
+          font-size: 1.3rem;
+          padding: 4px 8px;
+        }
+        .skills-nav-top {
+          font-size: 0.8rem;
+        }
+      }
     </style>
   </head>
-
   <body>
     <div class="container">
       <div class="cv-card">
@@ -423,31 +448,27 @@
                 alt="Profile"
               />
             </div>
-
             <div class="header-text">
               <div class="name">DITTO ADIANSYAH</div>
               <div class="title">
                 Drilling Engineer Consultant | Cybersecurity Research
               </div>
-
               <div class="contact-bar">
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dithub23@gmail.com" target="_blank">
-                <i class="fas fa-envelope"></i> dithub23@gmail.com
-              </a>
-
-
-                
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=dithub23@gmail.com"
+                  target="_blank"
+                >
+                  <i class="fas fa-envelope"></i> dithub23@gmail.com
+                </a>
                 <a href="https://wa.me/message/IPUSEQAH5SG3A1" target="_blank">
                   <i class="fab fa-whatsapp"></i> +62 858 1983 8321
                 </a>
-
-
-                <a href="https://dithubs.com" target="_blank"> <i class="fas fa-globe"></i> www.dithubs.com </a>
-                
-                  <a href="https://github.com/dithub23" target="_blank">
+                <a href="https://dithubs.com" target="_blank">
+                  <i class="fas fa-globe"></i> www.dithubs.com
+                </a>
+                <a href="https://github.com/dithub23" target="_blank">
                   <i class="fab fa-github"></i> github
                 </a>
-              
               </div>
             </div>
           </div>
@@ -473,25 +494,22 @@
               </p>
             </div>
 
-            <!-- SKILL NEW -->
-
+            <!-- SKILLS -->
             <div class="section-card">
               <h2 class="section-title">SKILLS</h2>
-
               <div class="skills-slider">
                 <div class="skills-wrapper">
-
-                  <!-- ================= PAGE 1 ================= -->
+                  <!-- PAGE 1 -->
                   <div class="skills-page active">
                     <div class="skill-item">
                       <div class="skill-name">
-                        <span>Drilling Engineer & Analysis</span><span>95%</span>
+                        <span>Drilling Engineer & Analysis</span
+                        ><span>95%</span>
                       </div>
                       <div class="progress-bar">
                         <div class="progress" data-width="95%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Cybersecurity Red Team</span><span>90%</span>
@@ -500,7 +518,6 @@
                         <div class="progress" data-width="90%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Cybersecurity Blue Team</span><span>85%</span>
@@ -509,7 +526,6 @@
                         <div class="progress" data-width="85%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Laravel Basic</span><span>70%</span>
@@ -519,8 +535,7 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- ================= PAGE 2 ================= -->
+                  <!-- PAGE 2 -->
                   <div class="skills-page">
                     <div class="skill-item">
                       <div class="skill-name">
@@ -530,7 +545,6 @@
                         <div class="progress" data-width="85%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Vulnerability Assessment</span><span>88%</span>
@@ -539,7 +553,6 @@
                         <div class="progress" data-width="88%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>SOC Monitoring (Wazuh)</span><span>80%</span>
@@ -548,7 +561,6 @@
                         <div class="progress" data-width="80%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Incident Response</span><span>78%</span>
@@ -558,8 +570,7 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- ================= PAGE 3 ================= -->
+                  <!-- PAGE 3 -->
                   <div class="skills-page">
                     <div class="skill-item">
                       <div class="skill-name">
@@ -569,7 +580,6 @@
                         <div class="progress" data-width="82%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Networking & TCP/IP</span><span>80%</span>
@@ -578,7 +588,6 @@
                         <div class="progress" data-width="80%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>SIEM Analysis</span><span>75%</span>
@@ -587,7 +596,6 @@
                         <div class="progress" data-width="75%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Log Analysis</span><span>78%</span>
@@ -597,8 +605,7 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- ================= PAGE 4 ================= -->
+                  <!-- PAGE 4 -->
                   <div class="skills-page">
                     <div class="skill-item">
                       <div class="skill-name">
@@ -608,7 +615,6 @@
                         <div class="progress" data-width="75%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Risk Assessment</span><span>85%</span>
@@ -617,7 +623,6 @@
                         <div class="progress" data-width="85%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Critical Thinking</span><span>90%</span>
@@ -626,7 +631,6 @@
                         <div class="progress" data-width="90%"></div>
                       </div>
                     </div>
-
                     <div class="skill-item">
                       <div class="skill-name">
                         <span>Technical Reporting</span><span>88%</span>
@@ -636,18 +640,20 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
 
-                <!-- NAVIGATION -->
+                <!-- Arrow Navigation -->
                 <div class="skills-nav">
-                  <button id="prevSkill"><i class="fas fa-chevron-left"></i></button>
-                  <span id="skillPageIndicator">1 / 4</span>
-                  <button id="nextSkill"><i class="fas fa-chevron-right"></i></button>
+                  <div class="skills-nav-top" id="skillPageIndicator">
+                    1 / 4
+                  </div>
+                  <div class="arrows-container">
+                    <i class="fas fa-chevron-left arrow" id="prevSkill"></i>
+                    <i class="fas fa-chevron-right arrow" id="nextSkill"></i>
+                  </div>
                 </div>
               </div>
             </div>
-
 
             <div class="section-card">
               <h2 class="section-title">INTERESTS & FOCUS</h2>
@@ -669,19 +675,15 @@
                   class="fas fa-code active"
                   title="Full-Stack Development"
                 ></i>
-                <i class="fas fa-database active" title="Database Management"></i>
-
+                <i
+                  class="fas fa-database active"
+                  title="Database Management"
+                ></i>
                 <i
                   class="fas fa-oil-well active"
                   title="Oil & Gas Drilling"
                 ></i>
-
                 <i class="fas fa-pen-nib active" title="Graphic Design"></i>
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -690,8 +692,6 @@
           <div class="main">
             <div class="section-card">
               <h2 class="section-title">EDUCATION</h2>
-
-              <!-- <div class="year">2023</div> -->
               <div class="position reveal-text delay-1">
                 Bachelor of Petroleum Engineering (B.Eng.)
               </div>
@@ -699,20 +699,14 @@
                 >Universitas Pembangunan Nasional “Veteran” Yogyakarta
                 Indonesia</span
               >
-
-              <!-- <div class="year">2010</div>
-              <div class="position">Master in Communication</div>
-              <span class="company">School of Technology</span> -->
             </div>
 
             <div class="section-card">
               <h2 class="section-title">EXPERIENCE</h2>
-
               <div class="year reveal-text delay-1">2018 – Present</div>
               <div class="position reveal-text delay-2">
                 Drilling Engineer Consultant
               </div>
-              <!-- <span class="company">Sunset Agency</span> -->
               <p class="reveal-text delay-3">
                 Monitoring well pressure, drilling parameters, and formation
                 data to ensure safe and efficient drilling operations. Conducted
@@ -720,12 +714,10 @@
                 incidents, while supporting drilling decision-making.
               </p>
               <br />
-
               <div class="year reveal-text delay-1">2024 – Present</div>
               <div class="position reveal-text delay-2">
                 Cybersecurity Research
               </div>
-              <!-- <span class="company">Creo Media</span> -->
               <p class="reveal-text delay-3">
                 Conducts security research by identifying web application
                 vulnerabilities and responsibly reporting findings to improve
@@ -737,162 +729,126 @@
 
             <div class="section-card">
               <h2 class="section-title">COURSE & TRAINING</h2>
-              <p class="reveal-text delay-3">
-
-                <!-- CERTIFICATIONS -->
-
-                <section class="certifications">
-                  <ul class="cert-list">
-
-                    <li class="reveal-text">
-                      <i class="fab fa-laravel"></i>
-                      <strong>Laravel Full Stack</strong>
-                      <span class="date">January 2026</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-user-secret"></i>
-                      <strong>Red Team Cybersecurity</strong>
-                      <span class="date">November 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-bug"></i>
-                      <strong>Web Penetration Testing (Advanced)</strong>
-                      <span class="date">October 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-shield-alt"></i>
-                      <strong>Security Monitoring with Wazuh (Blue Team)</strong>
-                      <span class="date">September 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-code"></i>
-                      <strong>Web Penetration Testing (Intermediate)</strong>
-                      <span class="date">August 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-shield"></i>
-                      <strong>Blue Team Cybersecurity</strong>
-                      <span class="date">July 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fab fa-linux"></i>
-                      <strong>Linux For Cybersecurity</strong>
-                      <span class="date">July 2025</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-oil-well"></i>
-                      <strong>Ahli Pengendali Bor (Onshore AP III – PPSDM MIGAS)</strong>
-                      <span class="date">February 2015</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-hard-hat"></i>
-                      <strong>Juru Bor (Onshore JB III – PPSDM MIGAS)</strong>
-                      <span class="date">February 2013</span>
-                    </li>
-
-                    <li class="reveal-text">
-                      <i class="fas fa-flask"></i>
-                      <strong>Mud School (Drilling Fluids Technology)</strong>
-                      <span class="date">April 2012</span>
-                    </li>
-                  </ul>
-                </section>
-
-              </p>
+              <section class="certifications">
+                <ul class="cert-list">
+                  <li class="reveal-text">
+                    <i class="fab fa-laravel"></i
+                    ><strong>Laravel Full Stack</strong
+                    ><span class="date">January 2026</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-user-secret"></i
+                    ><strong>Red Team Cybersecurity</strong
+                    ><span class="date">November 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-bug"></i
+                    ><strong>Web Penetration Testing (Advanced)</strong
+                    ><span class="date">October 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-shield-alt"></i
+                    ><strong>Security Monitoring with Wazuh (Blue Team)</strong
+                    ><span class="date">September 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-code"></i
+                    ><strong>Web Penetration Testing (Intermediate)</strong
+                    ><span class="date">August 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-shield"></i
+                    ><strong>Blue Team Cybersecurity</strong
+                    ><span class="date">July 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fab fa-linux"></i
+                    ><strong>Linux For Cybersecurity</strong
+                    ><span class="date">July 2025</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-oil-well"></i
+                    ><strong
+                      >Ahli Pengendali Bor (Onshore AP III – PPSDM
+                      MIGAS)</strong
+                    ><span class="date">February 2015</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-hard-hat"></i
+                    ><strong>Juru Bor (Onshore JB III – PPSDM MIGAS)</strong
+                    ><span class="date">February 2013</span>
+                  </li>
+                  <li class="reveal-text">
+                    <i class="fas fa-flask"></i
+                    ><strong>Mud School (Drilling Fluids Technology)</strong
+                    ><span class="date">April 2012</span>
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ================= SCRIPT ANIMASI ================= -->
+    <!-- SCRIPT -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Intersection Observer untuk animasi masuk
         const cards = document.querySelectorAll(".section-card");
-        const texts = document.querySelectorAll(".reveal-text");
-        const icons = document.querySelectorAll(".interest-icons i");
-
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("show");
-
-                // progress bar
                 entry.target.querySelectorAll(".progress").forEach((bar) => {
                   const targetWidth = bar.getAttribute("data-width");
-                  if (targetWidth) {
-                    bar.style.width = targetWidth;
-                  }
+                  if (targetWidth) bar.style.width = targetWidth;
                 });
-
-                // text reveal
                 entry.target.querySelectorAll(".reveal-text").forEach((el) => {
                   el.classList.add("show-text");
                 });
-
-                // interest icons
                 entry.target
                   .querySelectorAll(".interest-icons i")
                   .forEach((icon, i) => {
-                    setTimeout(() => {
-                      icon.classList.add("show-icon");
-                    }, i * 120);
+                    setTimeout(() => icon.classList.add("show-icon"), i * 120);
                   });
-
                 observer.unobserve(entry.target);
               }
             });
           },
           { threshold: 0.25 },
         );
-
         cards.forEach((card) => observer.observe(card));
-      });
 
-    // ===== SKILLS SLIDER SCRIPT (FIX SIZE VERSION) =====
-      document.addEventListener("DOMContentLoaded", () => {
+        // Skills Slider - Arrow Navigation
         let currentSkillPage = 0;
-
         const skillPages = document.querySelectorAll(".skills-page");
-        const indicator = document.getElementById("skillPageIndicator");
-        const nextBtn = document.getElementById("nextSkill");
         const prevBtn = document.getElementById("prevSkill");
+        const nextBtn = document.getElementById("nextSkill");
+        const indicator = document.getElementById("skillPageIndicator");
 
         function updateSkillSlider() {
           skillPages.forEach((page, index) => {
+            page.classList.toggle("active", index === currentSkillPage);
             if (index === currentSkillPage) {
-              page.classList.add("active");
-
-              // reset & animate progress bar
               page.querySelectorAll(".progress").forEach((bar) => {
                 bar.style.width = "0";
                 setTimeout(() => {
                   bar.style.width = bar.getAttribute("data-width");
-                }, 200);
+                }, 150);
               });
-            } else {
-              page.classList.remove("active");
             }
           });
 
+          prevBtn.classList.toggle("disabled", currentSkillPage === 0);
+          nextBtn.classList.toggle(
+            "disabled",
+            currentSkillPage === skillPages.length - 1,
+          );
+
           indicator.textContent = `${currentSkillPage + 1} / ${skillPages.length}`;
         }
-
-        nextBtn.addEventListener("click", () => {
-          if (currentSkillPage < skillPages.length - 1) {
-            currentSkillPage++;
-            updateSkillSlider();
-          }
-        });
 
         prevBtn.addEventListener("click", () => {
           if (currentSkillPage > 0) {
@@ -901,12 +857,16 @@
           }
         });
 
-        // init
+        nextBtn.addEventListener("click", () => {
+          if (currentSkillPage < skillPages.length - 1) {
+            currentSkillPage++;
+            updateSkillSlider();
+          }
+        });
+
+        // Inisialisasi pertama
         updateSkillSlider();
       });
-
-
-
     </script>
   </body>
 </html>
