@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DITTO ADIANSYAH - CV</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: #060b1f;
+        color: #e6ebf5;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+
+      .cv-card {
+        background: #0c122b;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+      }
+
+      .section-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .section-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .progress {
+        width: 0;
+        transition: width 1.4s ease;
+      }
+
+      /* ================= HEADER ================= */
+      .header {
+        background: linear-gradient(135deg, #0a1030, #020617);
+        padding: 45px;
+        border-bottom: 5px solid #1ea7ff;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        flex-wrap: wrap;
+      }
+
+      /* ===== FOTO JADI BOX ===== */
+      .photo-box {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        padding: 6px;
+        background: #0f1738;
+        border: 2px solid rgba(30, 167, 255, 0.35);
+        transition: all 0.35s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+      }
+
+      .photo-box:hover {
+        transform: scale(1.08);
+        box-shadow:
+          0 18px 45px rgba(30, 167, 255, 0.45),
+          0 0 0 3px rgba(30, 167, 255, 0.45);
+      }
+
+      .photo-box img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .header-text {
+        flex: 1;
+      }
+
+      .name {
+        font-size: 2.6rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 1.4px;
+      }
+
+      .title {
+        font-size: 1.3rem;
+        color: #1ea7ff;
+        margin: 8px 0 18px;
+      }
+
+      .contact-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        font-size: 0.95rem;
+        color: #cfd8e3;
+      }
+
+      .contact-bar a {
+        color: #8fd4ff;
+        text-decoration: none;
+      }
+
+      .contact-bar a:hover {
+        color: #1ea7ff;
+      }
+
+      /* ================= MAIN ================= */
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 45px;
+        padding: 55px 45px;
+      }
+
+      @media (max-width: 900px) {
+        .content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ================= SECTION CARD ================= */
+      .section-card {
+        background: #0f1738;
+        border-radius: 14px;
+        padding: 30px;
+        margin-bottom: 38px; /* ± 1 cm */
+        border: 1px solid rgba(30, 167, 255, 0.18);
+        transition: all 0.35s ease;
+      }
+
+      .section-card:hover {
+        transform: scale(1.04);
+        box-shadow:
+          0 16px 45px rgba(30, 167, 255, 0.25),
+          0 0 0 2px rgba(30, 167, 255, 0.35);
+      }
+
+      h2.section-title {
+        color: #1ea7ff;
+        font-size: 1.5rem;
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        position: relative;
+      }
+
+      h2.section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 70px;
+        height: 4px;
+        background: #1ea7ff;
+        border-radius: 3px;
+      }
+
+      /* ================= SKILLS ================= */
+      .skill-item {
+        margin-bottom: 18px;
+      }
+
+      .skill-name {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+      }
+
+      .progress-bar {
+        height: 10px;
+        background: #1a234f;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #4fc3ff, #1ea7ff);
+        border-radius: 5px;
+      }
+
+      /* ================= EXPERIENCE & EDUCATION ================= */
+      .year {
+        color: #8fd4ff;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .position {
+        font-size: 1.15rem;
+        color: #ffffff;
+      }
+
+      .company {
+        font-style: italic;
+        color: #aab6cc;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* ================= INTERESTS ================= */
+      .interest-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px;
+        font-size: 2.4rem;
+        color: #3a4b7a;
+      }
+
+      .interest-icons i.active {
+        color: #1ea7ff;
+      }
+
+      /* style tulisan bergerak */
+      /* ===== TEXT REVEAL ANIMATION ===== */
+      .reveal-text {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .reveal-text.show-text {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* delay bertahap */
+      .reveal-text.delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-text.delay-2 {
+        transition-delay: 0.25s;
+      }
+      .reveal-text.delay-3 {
+        transition-delay: 0.4s;
+      }
+      .reveal-text.delay-4 {
+        transition-delay: 0.55s;
+      }
+
+      /* ICON INTEREST */
+      .interest-icons i {
+        opacity: 0;
+        transform: scale(0.6);
+        transition: all 0.6s ease;
+      }
+
+      .interest-icons i.show-icon {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* ================= CERTIFICATIONS 1================= */
+      .certifications {
+        margin-top: 30px;
+      }
+
+      .certifications h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #222;
+      }
+
+      .certifications h2 i {
+        margin-right: 8px;
+        color: #444;
+      }
+
+      .cert-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .cert-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px dashed #ddd;
+      }
+
+      .cert-list li i {
+        font-size: 16px;
+        color: #555;
+        min-width: 20px;
+      }
+
+      .cert-list strong {
+        flex: 1;
+        font-weight: 600;
+      }
+
+      .cert-list .date {
+        font-size: 13px;
+        color: #777;
+      }
+
+      /* ================= CERTIFICATIONS 2================= */
+      .cert-list li {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .cert-list li.show-text {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* delay bertahap otomatis */
+      .cert-list li:nth-child(1) { transition-delay: 0.1s; }
+      .cert-list li:nth-child(2) { transition-delay: 0.2s; }
+      .cert-list li:nth-child(3) { transition-delay: 0.3s; }
+      .cert-list li:nth-child(4) { transition-delay: 0.4s; }
+      .cert-list li:nth-child(5) { transition-delay: 0.5s; }
+      .cert-list li:nth-child(6) { transition-delay: 0.6s; }
+      .cert-list li:nth-child(7) { transition-delay: 0.7s; }
+      .cert-list li:nth-child(8) { transition-delay: 0.8s; }
+      .cert-list li:nth-child(9) { transition-delay: 0.9s; }
+
+
+      /* ===== SKILLS SLIDER ===== */
+      .skills-slider {
+        overflow: hidden;
+      }
+
+      /* ===== FIX SIZE SKILLS CARD ===== */
+      .skills-slider {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skills-wrapper {
+        position: relative;
+      }
+
+      .skills-page {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(30px);
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .skills-page.active {
+        position: relative;
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+
+      .skills-nav {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .skills-nav button {
+        background: #1ea7ff;
+        border: none;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .skills-nav button:hover {
+        background: #4fc3ff;
+      }
+
+      #skillPageIndicator {
+        font-size: 0.9rem;
+        color: #8fd4ff;
+      }
+
+      
+  
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="cv-card">
+        <!-- HEADER -->
+        <div class="header">
+          <div class="header-inner">
+            <div class="photo-box">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4D03AQHni4swdwj08w/profile-displayphoto-scale_200_200/B4DZmcT_IkHYAY-/0/1759264110174?e=1771459200&v=beta&t=KH9qhhG0vPHWyS60EA1-3P-uw5O6t-iIVPibmdlh9VU"
+                alt="Profile"
+              />
+            </div>
+
+            <div class="header-text">
+              <div class="name">DITTO ADIANSYAH</div>
+              <div class="title">
+                Drilling Engineer Consultant | Cybersecurity Research
+              </div>
+
+              <div class="contact-bar">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dithub23@gmail.com" target="_blank">
+                <i class="fas fa-envelope"></i> dithub23@gmail.com
+              </a>
+
+
+                
+                <a href="https://wa.me/message/IPUSEQAH5SG3A1" target="_blank">
+                  <i class="fab fa-whatsapp"></i> +62 858 1983 8321
+                </a>
+
+
+                <a href="https://dithubs.com" target="_blank"> <i class="fas fa-globe"></i> www.dithubs.com </a>
+                
+                  <a href="https://github.com/dithub23" target="_blank">
+                  <i class="fab fa-github"></i> github
+                </a>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+          <!-- LEFT -->
+          <div class="sidebar">
+            <div class="section-card">
+              <h2 class="section-title">PROFILE</h2>
+              <p class="reveal-text delay-1">
+                Drilling Engineer with over 10 years of experience in oil and
+                gas drilling operations, specializing in mud logging and
+                pressure engineering. Brings strong analytical thinking and
+                risk-based decision-making from high-pressure industrial
+                environments. Actively transitioning into the IT field with a
+                primary focus on Cybersecurity, including SOC operations, SIEM,
+                and defensive security, while also building Full-Stack
+                development. Known for adaptability, structured thinking, and
+                the ability to translate operational risk into cyber risk
+                contexts.
+              </p>
+            </div>
+
+            <!-- SKILL NEW -->
+
+            <div class="section-card">
+              <h2 class="section-title">SKILLS</h2>
+
+              <div class="skills-slider">
+                <div class="skills-wrapper">
+
+                  <!-- ================= PAGE 1 ================= -->
+                  <div class="skills-page active">
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Drilling Engineer & Analysis</span><span>95%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="95%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Cybersecurity Red Team</span><span>90%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="90%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Cybersecurity Blue Team</span><span>85%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Laravel Basic</span><span>70%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="70%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ================= PAGE 2 ================= -->
+                  <div class="skills-page">
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Web Penetration Testing</span><span>85%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Vulnerability Assessment</span><span>88%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="88%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>SOC Monitoring (Wazuh)</span><span>80%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="80%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Incident Response</span><span>78%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="78%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ================= PAGE 3 ================= -->
+                  <div class="skills-page">
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Linux Administration</span><span>82%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="82%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Networking & TCP/IP</span><span>80%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="80%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>SIEM Analysis</span><span>75%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="75%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Log Analysis</span><span>78%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="78%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ================= PAGE 4 ================= -->
+                  <div class="skills-page">
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>HTML, CSS, JavaScript</span><span>75%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="75%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Risk Assessment</span><span>85%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Critical Thinking</span><span>90%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="90%"></div>
+                      </div>
+                    </div>
+
+                    <div class="skill-item">
+                      <div class="skill-name">
+                        <span>Technical Reporting</span><span>88%</span>
+                      </div>
+                      <div class="progress-bar">
+                        <div class="progress" data-width="88%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- NAVIGATION -->
+                <div class="skills-nav">
+                  <button id="prevSkill"><i class="fas fa-chevron-left"></i></button>
+                  <span id="skillPageIndicator">1 / 4</span>
+                  <button id="nextSkill"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="section-card">
+              <h2 class="section-title">INTERESTS & FOCUS</h2>
+              <div class="interest-icons">
+                <i
+                  class="fas fa-shield-halved active"
+                  title="Cybersecurity"
+                ></i>
+                <i class="fas fa-bug active" title="Vulnerability Research"></i>
+                <i
+                  class="fas fa-user-secret active"
+                  title="Ethical Hacking"
+                ></i>
+                <i
+                  class="fas fa-server active"
+                  title="SOC & Infrastructure"
+                ></i>
+                <i
+                  class="fas fa-code active"
+                  title="Full-Stack Development"
+                ></i>
+                <i class="fas fa-database active" title="Database Management"></i>
+
+                <i
+                  class="fas fa-oil-well active"
+                  title="Oil & Gas Drilling"
+                ></i>
+
+                <i class="fas fa-pen-nib active" title="Graphic Design"></i>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="main">
+            <div class="section-card">
+              <h2 class="section-title">EDUCATION</h2>
+
+              <!-- <div class="year">2023</div> -->
+              <div class="position reveal-text delay-1">
+                Bachelor of Petroleum Engineering (B.Eng.)
+              </div>
+              <span class="company reveal-text delay-2"
+                >Universitas Pembangunan Nasional “Veteran” Yogyakarta
+                Indonesia</span
+              >
+
+              <!-- <div class="year">2010</div>
+              <div class="position">Master in Communication</div>
+              <span class="company">School of Technology</span> -->
+            </div>
+
+            <div class="section-card">
+              <h2 class="section-title">EXPERIENCE</h2>
+
+              <div class="year reveal-text delay-1">2018 – Present</div>
+              <div class="position reveal-text delay-2">
+                Drilling Engineer Consultant
+              </div>
+              <!-- <span class="company">Sunset Agency</span> -->
+              <p class="reveal-text delay-3">
+                Monitoring well pressure, drilling parameters, and formation
+                data to ensure safe and efficient drilling operations. Conducted
+                real-time analysis to prevent kicks, losses, and well control
+                incidents, while supporting drilling decision-making.
+              </p>
+              <br />
+
+              <div class="year reveal-text delay-1">2024 – Present</div>
+              <div class="position reveal-text delay-2">
+                Cybersecurity Research
+              </div>
+              <!-- <span class="company">Creo Media</span> -->
+              <p class="reveal-text delay-3">
+                Conducts security research by identifying web application
+                vulnerabilities and responsibly reporting findings to improve
+                system security. Performs authorized website security testing,
+                including vulnerability assessment and basic penetration
+                testing, with a focus on ethical practices and risk mitigation.
+              </p>
+            </div>
+
+            <div class="section-card">
+              <h2 class="section-title">COURSE & TRAINING</h2>
+              <p class="reveal-text delay-3">
+
+                <!-- CERTIFICATIONS -->
+
+                <section class="certifications">
+                  <ul class="cert-list">
+
+                    <li class="reveal-text">
+                      <i class="fab fa-laravel"></i>
+                      <strong>Laravel Full Stack</strong>
+                      <span class="date">January 2026</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-user-secret"></i>
+                      <strong>Red Team Cybersecurity</strong>
+                      <span class="date">November 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-bug"></i>
+                      <strong>Web Penetration Testing (Advanced)</strong>
+                      <span class="date">October 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-shield-alt"></i>
+                      <strong>Security Monitoring with Wazuh (Blue Team)</strong>
+                      <span class="date">September 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-code"></i>
+                      <strong>Web Penetration Testing (Intermediate)</strong>
+                      <span class="date">August 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-shield"></i>
+                      <strong>Blue Team Cybersecurity</strong>
+                      <span class="date">July 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fab fa-linux"></i>
+                      <strong>Linux For Cybersecurity</strong>
+                      <span class="date">July 2025</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-oil-well"></i>
+                      <strong>Ahli Pengendali Bor (Onshore AP III – PPSDM MIGAS)</strong>
+                      <span class="date">February 2015</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-hard-hat"></i>
+                      <strong>Juru Bor (Onshore JB III – PPSDM MIGAS)</strong>
+                      <span class="date">February 2013</span>
+                    </li>
+
+                    <li class="reveal-text">
+                      <i class="fas fa-flask"></i>
+                      <strong>Mud School (Drilling Fluids Technology)</strong>
+                      <span class="date">April 2012</span>
+                    </li>
+                  </ul>
+                </section>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SCRIPT ANIMASI ================= -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".section-card");
+        const texts = document.querySelectorAll(".reveal-text");
+        const icons = document.querySelectorAll(".interest-icons i");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+
+                // progress bar
+                entry.target.querySelectorAll(".progress").forEach((bar) => {
+                  const targetWidth = bar.getAttribute("data-width");
+                  if (targetWidth) {
+                    bar.style.width = targetWidth;
+                  }
+                });
+
+                // text reveal
+                entry.target.querySelectorAll(".reveal-text").forEach((el) => {
+                  el.classList.add("show-text");
+                });
+
+                // interest icons
+                entry.target
+                  .querySelectorAll(".interest-icons i")
+                  .forEach((icon, i) => {
+                    setTimeout(() => {
+                      icon.classList.add("show-icon");
+                    }, i * 120);
+                  });
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.25 },
+        );
+
+        cards.forEach((card) => observer.observe(card));
+      });
+
+    // ===== SKILLS SLIDER SCRIPT (FIX SIZE VERSION) =====
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentSkillPage = 0;
+
+        const skillPages = document.querySelectorAll(".skills-page");
+        const indicator = document.getElementById("skillPageIndicator");
+        const nextBtn = document.getElementById("nextSkill");
+        const prevBtn = document.getElementById("prevSkill");
+
+        function updateSkillSlider() {
+          skillPages.forEach((page, index) => {
+            if (index === currentSkillPage) {
+              page.classList.add("active");
+
+              // reset & animate progress bar
+              page.querySelectorAll(".progress").forEach((bar) => {
+                bar.style.width = "0";
+                setTimeout(() => {
+                  bar.style.width = bar.getAttribute("data-width");
+                }, 200);
+              });
+            } else {
+              page.classList.remove("active");
+            }
+          });
+
+          indicator.textContent = `${currentSkillPage + 1} / ${skillPages.length}`;
+        }
+
+        nextBtn.addEventListener("click", () => {
+          if (currentSkillPage < skillPages.length - 1) {
+            currentSkillPage++;
+            updateSkillSlider();
+          }
+        });
+
+        prevBtn.addEventListener("click", () => {
+          if (currentSkillPage > 0) {
+            currentSkillPage--;
+            updateSkillSlider();
+          }
+        });
+
+        // init
+        updateSkillSlider();
+      });
+
+
+
+    </script>
+  </body>
+</html>
